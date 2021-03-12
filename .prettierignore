@@ -22,3 +22,7 @@ sketch
 
 package.json
 package-lock.json
+
+README.md
+LICENSE
+manifest.json
