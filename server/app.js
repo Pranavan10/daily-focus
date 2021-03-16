@@ -1,14 +1,14 @@
 const database = require("./firebase").database;
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 
+var createError = require("http-errors");
+var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-
+var usersRouter = require("./routes/users").router;
+const { login } = require("./routes/users");
 var app = express();
 
 // view engine setup
@@ -25,9 +25,9 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    next(createError(404));
-});
+// app.use(function (req, res, next) {
+//     next(createError(404));
+// });
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -40,18 +40,19 @@ app.use(function (err, req, res, next) {
     res.render("error");
 });
 
-module.exports = app;
+app.post("/login", login);
 
 // Example of writing to database
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-  database.ref("/").set("new test", function(error) {
-    if (error) {
-      // The write failed...
-      console.log("Failed with error: " + error)
-    } else {
-      // The write was successful...
-      console.log("success")
-    }
-})
+    console.log("Example app listening on port 3000!");
+    database.ref("/").set("new test", function (error) {
+        if (error) {
+            // The write failed...
+            console.log("Failed with error: " + error);
+        } else {
+            // The write was successful...
+            console.log("success");
+        }
+    });
 });
+module.exports = app;
