@@ -1,12 +1,13 @@
 var express = require("express");
-var router = express.Router();
+var usersRouter = express.Router();
 const emptyLogin = require("./../validators");
 const firebase = require("firebase");
 
 /* GET users listing. */
-router.get("/", function (req, res, next) {
+usersRouter.get("/", function (req, res, next) {
     res.send("respond with a resource");
 });
+
 //Added login functionality to obtain token to access user id for database items
 function login(req, res) {
     const user = {
@@ -33,6 +34,6 @@ function login(req, res) {
 }
 
 module.exports = {
-    router,
+    usersRouter,
     login,
 };

@@ -7,8 +7,8 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users").router;
-const { login } = require("./routes/users");
+var { usersRouter, login } = require("./routes/users");
+
 var app = express();
 
 // view engine setup
