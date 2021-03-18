@@ -1,16 +1,14 @@
 const database = require("./firebase").database;
-
+const authorise = require("./auth");
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-
 var indexRouter = require("./routes/index");
 var { usersRouter, login } = require("./routes/users");
-var todoRouter = require('./routes/todo');
-
+var todoRouter = require("./routes/todo");
 
 var app = express();
 
@@ -24,9 +22,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/todo', todoRouter);
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
+app.use("/todo", todoRouter);
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -38,8 +36,9 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.render("error");
 });
+// app.post("/auth", authorise);
 //endpoint for login
-app.post("/login", login);
+app.post("/login", authorise, login);
 
 // Example of writing to database
 app.listen(3000, function () {
