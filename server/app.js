@@ -38,7 +38,7 @@ app.use(function (err, req, res, next) {
 });
 
 //endpoint for login
-app.post("/login", authorise, login);
+app.post("/login", login);
 
 // Example of writing to database
 app.listen(3000, function () {
