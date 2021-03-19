@@ -7,8 +7,8 @@ function authorise(request, response, next) {
     if (request.headers.authorization && request.headers.authorization.startsWith("Bearer ")) {
         idToken = request.headers.authorization.split("Bearer ")[1];
     } else {
-        console.error("No token found");
-        return response.status(401).json({ error: "Unauthorized" });
+        console.error("No bearer token found");
+        return response.status(401).json({ error: "Unauthorized access" });
     }
     admin
         .auth()
@@ -18,7 +18,7 @@ function authorise(request, response, next) {
             return next();
         })
         .catch((err) => {
-            console.error("Error while verifying token", err);
+            console.error("Error while attempting to verifying token", err);
             return response.status(401).json(err);
         });
 }
