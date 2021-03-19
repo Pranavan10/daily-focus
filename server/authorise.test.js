@@ -5,11 +5,15 @@ const authorise = require("./auth");
 const token = "MyToken";
 
 const validBearerToken = {
-    token: `Bearer ${token}`,
+    headers: {
+        authorization: `Bearer ${token}`,
+    },
 };
 
 const noBearerPrefixToken = {
-    token: token,
+    headers: {
+        authorization: token,
+    },
 };
 
 const {
@@ -35,26 +39,15 @@ describe("authorisation tests  ", () => {
     });
 
     it("when a valid bearer token is given to firebase is the expected UUID returned", async () => {
-        const response = await request(app)
-            .post("/auth")
-            .set("Authorization", validBearerToken.token);
-        expect(response.status).toBe(200);
-        expect(response.body.UUID).toEqual(mockUid);
+        const returnedUUID = await authorise(validBearerToken);
+
+        expect(returnedUUID).toEqual(mockUid);
         expect(admin.auth).toHaveBeenCalled();
         expect(admin.auth().verifyIdToken).toHaveBeenCalledWith(token);
     });
 
-    it("Token is not given with request expects aunauthorized error message with 401 status", async () => {
-        const response = await request(app).post("/auth");
-        expect(response.status).toBe(401);
-        expect(response.body).toEqual(UnauthorizedErrorMessage);
-    });
-
-    it("Token is given without Bearer prefix expects aunauthorized error message with 401 status", async () => {
-        const response = await request(app)
-            .post("/auth")
-            .set("Authorization", noBearerPrefixToken.token);
-        expect(response.status).toBe(401);
-        expect(response.body).toEqual(UnauthorizedErrorMessage);
+    it("Token is given without Bearer prefix expects empty string", async () => {
+        const returnedUUID = await authorise(noBearerPrefixToken);
+        expect(returnedUUID).toEqual("");
     });
 });
