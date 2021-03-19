@@ -10,6 +10,7 @@ function authorise(req, res, next) {
         console.error("No bearer token found");
         return res.status(401).json({ error: "Unauthorized access" });
     }
+
     admin
         .auth()
         .verifyIdToken(idToken)
