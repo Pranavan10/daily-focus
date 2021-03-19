@@ -13,8 +13,7 @@ function authorise(request, response, next) {
     admin
         .auth()
         .verifyIdToken(idToken)
-        .then((decodedToken) => {
-            request.user = decodedToken;
+        .then((Token) => {
             return next();
         })
         .catch((err) => {
