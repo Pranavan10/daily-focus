@@ -44,6 +44,7 @@ app.post("/login", login);
 //endpoint for signup
 app.post("/signup", signup);
 
-// Example of writing to database
+
 
 module.exports = app;
+
