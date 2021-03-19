@@ -38,6 +38,7 @@ app.use(function (err, req, res, next) {
 });
 
 //endpoint for login
+// app.post("/auth", authorise);
 app.post("/login", login);
 
 // Example of writing to database
