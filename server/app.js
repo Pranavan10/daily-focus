@@ -39,7 +39,6 @@ app.use(function (err, req, res, next) {
 });
 
 //endpoint for login
-
 app.post("/login", login);
 
 //endpoint for signup

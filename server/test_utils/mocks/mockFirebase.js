@@ -14,6 +14,10 @@ const invalidEmailErrorMessage = {
     message: "The email address is badly formatted.",
 };
 
+const UnauthorizedErrorMessage = {
+    message: "Unauthorized access",
+};
+
 const mockCreateUserWithEmailAndPassword = jest.fn((inputEmail, inputPassword) => {
     if (inputPassword.length < 6) {
         return Promise.reject(new Error(shortPasswordErrorMessage.message));
@@ -51,4 +55,5 @@ module.exports = {
     mockUid,
     shortPasswordErrorMessage,
     invalidEmailErrorMessage,
+    UnauthorizedErrorMessage,
 };

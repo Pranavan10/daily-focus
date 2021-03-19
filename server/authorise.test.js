@@ -8,11 +8,16 @@ const validBearerToken = {
     token: `Bearer ${token}`,
 };
 
+const noBearerPrefixToken = {
+    token: token,
+};
+
 const {
     shortPasswordErrorMessage,
     mockToken,
     mockUid,
     invalidEmailErrorMessage,
+    UnauthorizedErrorMessage,
 } = require("./test_utils/mocks/mockFirebase");
 
 jest.mock("firebase-admin", () => {
@@ -37,5 +42,19 @@ describe("authorisation tests  ", () => {
         expect(response.body.UUID).toEqual(mockUid);
         expect(admin.auth).toHaveBeenCalled();
         expect(admin.auth().verifyIdToken).toHaveBeenCalledWith(token);
+    });
+
+    it("Token is not given with request expects aunauthorized error message with 401 status", async () => {
+        const response = await request(app).post("/auth");
+        expect(response.status).toBe(401);
+        expect(response.body).toEqual(UnauthorizedErrorMessage);
+    });
+
+    it("Token is given without Bearer prefix expects aunauthorized error message with 401 status", async () => {
+        const response = await request(app)
+            .post("/auth")
+            .set("Authorization", noBearerPrefixToken.token);
+        expect(response.status).toBe(401);
+        expect(response.body).toEqual(UnauthorizedErrorMessage);
     });
 });

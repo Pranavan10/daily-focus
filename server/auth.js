@@ -7,8 +7,7 @@ function authorise(req, res, next) {
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer ")) {
         idToken = req.headers.authorization.split("Bearer ")[1];
     } else {
-        console.error("No bearer token found");
-        return res.status(401).json({ error: "Unauthorized access" });
+        return res.status(401).json({ message: "Unauthorized access" });
     }
 
     admin
@@ -19,7 +18,6 @@ function authorise(req, res, next) {
             return res.json({ UUID });
         })
         .catch((err) => {
-            console.error("Error while attempting to verifying token", err);
             return res.status(401).json(err);
         });
 }
