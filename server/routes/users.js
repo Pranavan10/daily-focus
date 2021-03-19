@@ -2,6 +2,7 @@ var express = require("express");
 var usersRouter = express.Router();
 const emptyLogin = require("./../validators");
 const firebase = require("firebase");
+const database = require("./../firebase").database;
 
 /* GET users listing. */
 usersRouter.get("/", function (req, res, next) {
@@ -29,11 +30,47 @@ function login(req, res) {
         })
         .catch((err) => {
             console.err(err);
-            return res.status(403).json({ Message: "Either your email or password is incorrect" });
+            return res.status(403).json({ message: "Either your email or password is incorrect" });
+        });
+}
+
+function signup(req, res) {
+    const newUser = {
+        email: req.body.email,
+        password: req.body.password,
+    };
+
+    let token, userId;
+
+    firebase
+        .auth()
+        .createUserWithEmailAndPassword(newUser.email, newUser.password)
+        .then((data) => {
+            userId = data.user.uid;
+            return data.user.getIdToken();
+        })
+        .then((idtoken) => {
+            token = idtoken;
+            //add user's email to real time database
+            const user = {
+                email: newUser.email,
+            };
+
+            return database.ref("/").update({
+                [userId]: user,
+            });
+        })
+        .then(() => {
+            return res.status(201).json({ token });
+        })
+        .catch((err) => {
+            //send error response with message thrown by firebase
+            return res.status(400).json({ message: err.message });
         });
 }
 
 module.exports = {
     usersRouter,
     login,
+    signup,
 };
