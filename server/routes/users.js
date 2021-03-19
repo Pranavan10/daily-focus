@@ -29,8 +29,6 @@ function login(req, res) {
             return res.json({ token });
         })
         .catch((err) => {
-
-            console.error(err);
             return res.status(403).json({ message: "Either your email or password is incorrect" });
         });
 }
@@ -67,7 +65,6 @@ function signup(req, res) {
         .catch((err) => {
             //send error response with message thrown by firebase
             return res.status(400).json({ message: err.message });
-
         });
 }
 

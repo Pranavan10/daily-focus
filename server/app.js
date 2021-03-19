@@ -1,18 +1,13 @@
-
-const authorise = require("./auth");
-
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-
 const database = require("./firebase").database;
 var indexRouter = require("./routes/index");
 var { usersRouter, login, signup } = require("./routes/users");
-var todoRouter = require('./routes/todo');
-
+var todoRouter = require("./routes/todo");
 
 var app = express();
 
@@ -42,14 +37,10 @@ app.use(function (err, req, res, next) {
 });
 
 //endpoint for login
-// app.post("/auth", authorise);
+
 app.post("/login", login);
 
 //endpoint for signup
 app.post("/signup", signup);
 
-// Example of writing to database
-app.listen(3000, function () {
-    console.log("Example app listening on port 3000!");
-});
 module.exports = app;

@@ -3,11 +3,19 @@ const mockToken = {
 };
 const mockUid = "mockUid";
 
+const mockVerifiedIdToken = {
+    user_id: mockUid,
+};
+
 const shortPasswordErrorMessage = {
     message: "Password should be at least 6 characters",
 };
 const invalidEmailErrorMessage = {
     message: "The email address is badly formatted.",
+};
+
+const UnauthorizedErrorMessage = {
+    message: "Unauthorized access",
 };
 
 const mockCreateUserWithEmailAndPassword = jest.fn((inputEmail, inputPassword) => {
@@ -20,6 +28,10 @@ const mockCreateUserWithEmailAndPassword = jest.fn((inputEmail, inputPassword) =
     }
 });
 
+const mockVerifyIdToken = jest.fn((idToken) => {
+    return Promise.resolve(mockVerifiedIdToken);
+});
+
 const mockUserData = {
     user: {
         uid: mockUid,
@@ -29,6 +41,7 @@ const mockUserData = {
 
 const mockAuthObject = {
     createUserWithEmailAndPassword: mockCreateUserWithEmailAndPassword,
+    verifyIdToken: mockVerifyIdToken,
 };
 
 const mockFirebase = {
@@ -42,4 +55,5 @@ module.exports = {
     mockUid,
     shortPasswordErrorMessage,
     invalidEmailErrorMessage,
+    UnauthorizedErrorMessage,
 };
