@@ -16,7 +16,6 @@ function authorise(req) {
             .verifyIdToken(idToken)
             .then((token) => {
                 const UUID = token.user_id;
-                console.log(UUID);
                 resolve(UUID);
             })
             .catch((err) => {

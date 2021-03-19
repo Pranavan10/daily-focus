@@ -30,10 +30,6 @@ jest.mock("firebase-admin", () => {
 });
 
 describe("authorisation tests  ", () => {
-    beforeAll(() => {
-        //Used this originally for postman testing does not work without this line
-        app.post("/auth", authorise);
-    });
     afterEach(() => {
         jest.clearAllMocks();
     });
