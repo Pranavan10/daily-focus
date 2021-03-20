@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it renders correctly 1`] = `
+<header
+  className="header"
+>
+  <div
+    className="focusLogo"
+  >
+    <img
+      alt="FOCUS"
+      src="focus-logo.svg"
+      style={
+        Object {
+          "width": 175,
+        }
+      }
+    />
+  </div>
+  <div
+    className="dateTime"
+  >
+    <DateTime />
+  </div>
+  <div
+    className="searchBar"
+  >
+    <SearchBar />
+  </div>
+  <div
+    className="addWidget"
+  >
+    <WithStyles(ForwardRef(Button))
+      classes={
+        Object {
+          "label": "makeStyles-label-2",
+          "root": "makeStyles-root-1",
+        }
+      }
+      color="primary"
+      variant="contained"
+    >
+      Add Widget
+    </WithStyles(ForwardRef(Button))>
+  </div>
+  <div
+    className="userIcon"
+  >
+    <WithStyles(ForwardRef(IconButton))
+      aria-label="user menu"
+      classes={
+        Object {
+          "root": "makeStyles-icon-3",
+        }
+      }
+    >
+      <Memo
+        classes={
+          Object {
+            "root": "makeStyles-iconLabel-4",
+          }
+        }
+      />
+    </WithStyles(ForwardRef(IconButton))>
+  </div>
+</header>
+`;

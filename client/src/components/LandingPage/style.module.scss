@@ -1,0 +1,53 @@
+.page {
+    background: linear-gradient(248.66deg, rgba(0, 240, 255, 0.78) 0%, rgba(2, 164, 255, 0) 100%),
+        #606bea;
+}
+
+.container {
+    display: flex;
+    width: 80vw;
+    height: 100vh;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+
+    .focusIntro {
+        width: 45%;
+
+        .focusLogo {
+            width: 330px;
+            filter: brightness(100) drop-shadow(2px 8px 20px rgba(0, 0, 0, 0.25));
+            margin-left: -12px;
+        }
+
+        p {
+            font-family: "Ropa Sans", sans-serif;
+            color: white;
+            font-size: 1.5rem;
+        }
+    }
+
+    .signUpContainer {
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        padding: 0 30px;
+        align-items: center;
+        width: 45%;
+        background-color: white;
+
+        h1 {
+            margin: 30px 0;
+            font-family: "Ropa Sans", sans-serif;
+            font-weight: 400;
+            font-size: 2.25rem;
+            color: #7d7d7d;
+        }
+
+        a {
+            font-size: 1.25rem;
+            color: #30a0f5;
+            margin: 40px 0;
+        }
+    }
+}

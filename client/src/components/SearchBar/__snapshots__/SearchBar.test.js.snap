@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it renders correctly 1`] = `
+<WithStyles(ForwardRef(Paper))
+  action="https://www.google.co.nz/search"
+  classes={
+    Object {
+      "root": "makeStyles-searchBar-4",
+    }
+  }
+  component="form"
+  elevation={3}
+  method="get"
+  target="_blank"
+>
+  <div
+    className="container"
+  >
+    <img
+      alt="Google"
+      className="googleLogo"
+      src="google-icon.svg"
+    />
+    <WithStyles(ForwardRef(InputBase))
+      classes={
+        Object {
+          "input": "makeStyles-searchLabel-2",
+          "root": "makeStyles-root-1",
+        }
+      }
+      inputComponent="input"
+      inputProps={
+        Object {
+          "aria-label": "search google",
+          "name": "query",
+          "type": "search",
+        }
+      }
+      placeholder="Google Search"
+    />
+    <WithStyles(ForwardRef(IconButton))
+      aria-label="search"
+      classes={
+        Object {
+          "root": "makeStyles-searchIcon-3",
+        }
+      }
+      type="submit"
+    >
+      <Memo />
+    </WithStyles(ForwardRef(IconButton))>
+  </div>
+</WithStyles(ForwardRef(Paper))>
+`;

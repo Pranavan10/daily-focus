@@ -5,6 +5,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import styles from "./style.module.scss";
 import FocusLogo from "../../images/focus-logo.svg";
 import SearchBar from "../SearchBar";
+import DateTime from "../DateTime";
 
 const useStyles = makeStyles({
     root: {
@@ -38,7 +39,9 @@ export default function Header() {
                 <img style={{ width: 175 }} src={FocusLogo} alt="FOCUS" />
             </div>
 
-            <div className={styles.dateTime}>10:09 AM | Monday 8 March</div>
+            <div className={styles.dateTime}>
+                <DateTime />
+            </div>
 
             <div className={styles.searchBar}>
                 <SearchBar />
